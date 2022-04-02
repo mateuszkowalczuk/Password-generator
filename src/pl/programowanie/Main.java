@@ -19,6 +19,9 @@ public class Main {
                 if (numberOfCharacters <= 5){
                     numberOfCharacters = 0;
                     System.out.print("Password is too short. Enter at least 6 characters: ");
+                } else if (numberOfCharacters > 25){
+                    numberOfCharacters = 0;
+                    System.out.print("Password is too long. Enter at most 25 characters: ");
                 }
             } catch (InputMismatchException e){
                 System.out.print("Incorrect character. Try again: ");
@@ -29,37 +32,43 @@ public class Main {
         char[] password = new char[numberOfCharacters];
         String characters = "";
 
-        Scanner choice = new Scanner(System.in);
-        System.out.print("Small letters?(y/n): ");
-        String smallLettersChoice = choice.nextLine();
-        switch (smallLettersChoice) {
-            case "y", "Y" -> characters += "abcdefghijklmnopqrstuvwxyz";
-            case "n", "N" -> System.out.print("");
-            default -> System.out.println("Incorrect character.");
-        }
+        while (characters.equals("")) {
+            Scanner choice = new Scanner(System.in);
+            System.out.print("Small letters?(y/n): ");
+            String smallLettersChoice = choice.nextLine();
+            switch (smallLettersChoice) {
+                case "y", "Y" -> characters += "abcdefghijklmnopqrstuvwxyz";
+                case "n", "N" -> System.out.print("");
+                default -> System.out.println("Incorrect character.");
+            }
 
-        System.out.print("Capital letters?(y/n): ");
-        String capitalLettersChoice = choice.nextLine();
-        switch (capitalLettersChoice) {
-            case "y", "Y" -> characters += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            case "n", "N" -> System.out.print("");
-            default -> System.out.println("Incorrect character.");
-        }
+            System.out.print("Capital letters?(y/n): ");
+            String capitalLettersChoice = choice.nextLine();
+            switch (capitalLettersChoice) {
+                case "y", "Y" -> characters += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                case "n", "N" -> System.out.print("");
+                default -> System.out.println("Incorrect character.");
+            }
 
-        System.out.print("Digits?(y/n): ");
-        String digitsChoice = choice.nextLine();
-        switch (digitsChoice) {
-            case "y", "Y" -> characters += "0123456789";
-            case "n", "N" -> System.out.print("");
-            default -> System.out.println("Incorrect character.");
-        }
+            System.out.print("Digits?(y/n): ");
+            String digitsChoice = choice.nextLine();
+            switch (digitsChoice) {
+                case "y", "Y" -> characters += "0123456789";
+                case "n", "N" -> System.out.print("");
+                default -> System.out.println("Incorrect character.");
+            }
 
-        System.out.print("Special characters?(y/n): ");
-        String specialCharsChoice = choice.nextLine();
-        switch (specialCharsChoice) {
-            case "y", "Y" -> characters += "!@#$%^&*?/";
-            case "n", "N" -> System.out.print("");
-            default -> System.out.println("Incorrect character.");
+            System.out.print("Special characters?(y/n): ");
+            String specialCharsChoice = choice.nextLine();
+            switch (specialCharsChoice) {
+                case "y", "Y" -> characters += "!@#$%^&*?/";
+                case "n", "N" -> System.out.print("");
+                default -> System.out.println("Incorrect character.");
+            }
+
+            if (characters.equals("")){
+                System.out.println("No value selected. Try again");
+            }
         }
 
             char[] chars = characters.toCharArray();
